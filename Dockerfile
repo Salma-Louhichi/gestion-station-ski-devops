@@ -1,14 +1,14 @@
-# Use a lightweight Java 17 runtime
-FROM eclipse-temurin:17-jdk-alpine
+# Utilise une image Java 17 compatible ARM64 (ta VM est ARM)
+FROM eclipse-temurin:17-jdk
 
-# Working directory inside container
+# Répertoire de travail
 WORKDIR /app
 
-# Copy the built JAR from target (name from pom.xml)
+# Copie le JAR généré par Maven
 COPY target/student-management-0.0.1-SNAPSHOT.jar app.jar
 
-# App listens on port 8089 (check application.properties)
+# Port de ton app Spring Boot
 EXPOSE 8089
 
-# Run the Spring Boot app
+# Lancement de l'app
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
